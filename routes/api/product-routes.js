@@ -16,9 +16,9 @@ router.get("/", async (req, res) => {
 
 // GET - /api/products/:id
 // Get a particular product with its id and its associated category and tags
-router.get("/:id", async (req, res) => {
+router.get("/:id", (req, res) => {
   try {
-    const productData = await Product.findByPk(req.params.id, {
+    const productData = Product.findByPk(req.params.id, {
       include: [{model: Category}, {model: Tag}],
     });
     if (!productData) {
