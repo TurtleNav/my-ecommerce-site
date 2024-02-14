@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
 
 // GET - /api/products/:id
 // Get a particular product with its id and its associated category and tags
-router.get("/:id", (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const productData = Product.findByPk(req.params.id, {
       include: [{model: Category}, {model: Tag}],
@@ -25,7 +25,7 @@ router.get("/:id", (req, res) => {
       return res.status(404).json({message: "No product exists with that particular id"});
     }
     res.status(200).json(productData);
-  } catch (err) {
+  } catch(err) {
     res.status(500).json(err);
   }
 });
