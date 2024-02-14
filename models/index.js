@@ -16,9 +16,11 @@ Category.hasMany(Product, {
 });
 
 // Products belongToMany Tags (through ProductTag)
+// can't seem to get through to work
 Product.belongsToMany(Tag, {
   through: {
     model: ProductTag,
+    foreignKey: "product_id",
     unique: false,
   },
 });
@@ -27,6 +29,8 @@ Product.belongsToMany(Tag, {
 Tag.belongsToMany(Product, {
   through: {
     model: ProductTag,
+    foreignKey: "product_tag",
+    onDelete: "CASCADE",
     unique: false,
   },
 });

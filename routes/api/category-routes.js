@@ -73,7 +73,6 @@ router.delete("/:id", async (req, res) => {
         id: req.params.id,
       },
     });
-    // check if the category exists, if it doesn't it will send back an error message and stop running the request
     if (!categoryData) {
       return res.status(404).json({message: "The desired category to delete doesn't exist"});
     }
